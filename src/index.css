@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+@import './styles/animations.css';
+
+/* Dark mode conmutado por clase en <html> (ver hooks/useTheme.ts). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Paleta Velora (genera utilidades bg-velora-*, text-velora-*, etc.) ─── */
+@theme {
+  --color-velora-bg: #0b0b0f;
+  --color-velora-surface: #16171d;
+  --color-velora-surface-2: #1f2028;
+  --color-velora-border: #2e303a;
+  --color-velora-text: #e5e4e7;
+  --color-velora-muted: #9ca3af;
+  --color-velora-primary: #aa3bff;
+  --color-velora-primary-hover: #c084fc;
+  --color-velora-accent: #6d28d9;
+  --color-velora-success: #22c55e;
+  --color-velora-warning: #f59e0b;
+  --color-velora-danger: #ef4444;
+
+  --font-sans: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-velora-bg);
+  color: var(--color-velora-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── Scrollbar Velora ─── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-velora-border) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-velora-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-velora-border);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-velora-primary);
+}
