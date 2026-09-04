@@ -1,6 +1,12 @@
 export type * from './api'
 export type * from './admin'
+export type * from './components'
+export type * from './dashboard'
 export type * from './forms'
+export type * from './health'
+export type * from './moderation'
+export type * from './revenue'
+export type * from './users'
 
 // ─── Auth ───────────────────────────────────────────────────────────────
 export interface User {

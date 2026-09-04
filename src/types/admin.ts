@@ -1,5 +1,5 @@
-export type UserTier = 'FREE' | 'PREMIUM' | 'PRO'
-export type UserStatus = 'active' | 'suspended' | 'deleted'
+export type UserTier = 'FREE' | 'PREMIUM' | 'PRO_COACHING'
+export type UserStatus = 'ACTIVE' | 'SUSPENDED'
 export type UserRole = 'athlete' | 'coach' | 'admin'
 
 export interface AdminUser {
@@ -10,6 +10,8 @@ export interface AdminUser {
   tier: UserTier
   status: UserStatus
   createdAt: string
+  followers?: number
+  activities?: number
 }
 
 export interface AuthUser {
@@ -32,6 +34,8 @@ export interface SystemHealth {
   uptimePct: number
   latencyMs: { p50: number; p95: number; p99: number }
   checkedAt: string
+  /** Momento desde el que el servicio está arriba (para "2h 34m uptime"). */
+  startedAt?: string
 }
 
 export interface DashboardStats {

@@ -15,6 +15,7 @@
   --color-velora-primary: #aa3bff;
   --color-velora-primary-hover: #c084fc;
   --color-velora-accent: #6d28d9;
+  --color-velora-caution: #eab308;
   --color-velora-success: #22c55e;
   --color-velora-warning: #f59e0b;
   --color-velora-danger: #ef4444;
@@ -24,6 +25,20 @@
 
 :root {
   color-scheme: dark;
+}
+
+/* ─── Modo claro: overrides cuando NO está la clase .dark en <html> ─── */
+:root:not(.dark) {
+  color-scheme: light;
+  --color-velora-bg: #f7f7f8;
+  --color-velora-surface: #ffffff;
+  --color-velora-surface-2: #f0f0f2;
+  --color-velora-border: #e2e2e6;
+  --color-velora-text: #18181b;
+  --color-velora-muted: #6b6b74;
+  --color-velora-primary: #8b2fd6;
+  --color-velora-primary-hover: #7a25c0;
+  --color-velora-accent: #7c3aed;
 }
 
 html,

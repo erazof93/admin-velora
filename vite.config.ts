@@ -18,7 +18,9 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    // 5173 = puerto del admin (el backend NestJS usa el 3000).
+    port: 5173,
+    strictPort: true,
   },
   build: {
     outDir: 'dist',

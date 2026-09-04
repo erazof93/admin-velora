@@ -17,5 +17,33 @@ export const API_ENDPOINTS = {
   USERS: {
     LIST: '/users',
     DETAIL: (id: string) => `/users/${id}`,
+    ACTIVITIES: (id: string) => `/users/${id}/activities`,
+    BULK_ACTION: '/users/bulk-action',
+  },
+  DASHBOARD: {
+    STATS: '/stats',
+    REVENUE: '/revenue',
+    ACTIVITY: '/users/activity',
+    ACTIVITY_RECENT: '/users/activity/recent',
+    HEALTH: '/health',
+    COACHES_TOP: '/coach/top',
+  },
+  HEALTH: {
+    STATUS: '/health',
+    METRICS: '/health/metrics',
+    ERRORS: '/health/errors',
+    UPTIME: '/health/uptime',
+  },
+  REVENUE: {
+    OVERVIEW: '/revenue',
+    TOP_COACHES: '/revenue/top-coaches',
+    CHURN: '/revenue/churn',
+  },
+  MODERATION: {
+    FLAGGED: '/moderation/flagged',
+    USERS: '/moderation/users',
+    HISTORY: '/moderation/history',
+    STATS: '/moderation/stats',
+    ACTION: '/moderation/action',
   },
 } as const

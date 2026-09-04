@@ -1,658 +1,302 @@
-# 🗺️ ROADMAP - Velora Admin Fases de Desarrollo
+# 🗺️ ROADMAP - Admin Velora
 
-Plan detallado de las 10 fases para llevar el admin a producción.
+Plan de desarrollo: 10 fases, completadas 9.
 
 ---
 
-## 📅 TIMELINE
+## 📅 TIMELINE ACTUALIZADO
 
 ```
-Fase 1:  Setup        (0.5 semanas) ✅ COMPLETADO
-Fase 2:  Auth         (1 semana)    🔴 PRÓXIMO
-Fase 3:  Layout       (0.75 sem)    🟡
-Fase 4:  Dashboard    (1 semana)    🟡
-Fase 5:  Users        (1 semana)    🟡
-Fase 6:  Revenue      (0.75 sem)    🟡
-Fase 7:  Moderation   (0.5 semana)  🟡
-Fase 8:  Health       (0.5 semana)  🟡
-Fase 9:  Components   (0.75 sem)    🟡
-Fase 10: Testing      (1 semana)    🟡
+Fase 1:  Setup        (0.5 sem)   ✅ COMPLETADA
+Fase 2:  Auth         (1 sem)     ✅ COMPLETADA
+Fase 3:  Layout       (0.75 sem)  ✅ COMPLETADA
+Fase 4:  Dashboard    (1 sem)     ✅ COMPLETADA
+Fase 5:  Users        (1 sem)     ✅ COMPLETADA + AUDITADA
+Fase 6:  Revenue      (0.75 sem)  ✅ COMPLETADA
+Fase 7:  Moderation   (0.5 sem)   ✅ COMPLETADA
+Fase 8:  Health       (0.5 sem)   ✅ COMPLETADA
+Fase 9:  Components   (0.75 sem)  ✅ COMPLETADA
+Fase 10: Testing      (1 sem)     🔴 PRÓXIMO
 ─────────────────────────────────
-Total:   ~7.5 semanas (45-50 horas)
+Progreso: 9/10 fases (90%)
 ```
 
 ---
 
-## 🟢 FASE 1: SETUP - COMPLETADO ✅
+## 🟢 FASE 1: SETUP - COMPLETADA ✅
 
-**Estado:** ✅ LISTO  
-**Tiempo:** 0.5 semanas  
-**Responsabilidad:** Setup inicial
+**Status:** ✅ COMPLETADA
+**Tiempo:** 0.5 semanas
+**Fecha:** 2026-09-03
 
-### ✅ Tareas Completadas
-
-```
-✅ Vite + React + TypeScript configurado
-✅ Tailwind CSS + dark mode (Velora theme)
+✅ Vite + React + TypeScript
+✅ Tailwind CSS configurado
 ✅ Zustand instalado
 ✅ React Query instalado
-✅ Oxlint configurado
-✅ Prettier configurado
-✅ .env.local creado
-✅ API client structure preparado
-✅ Alias paths configurados (@components, @lib, etc)
-✅ Proyecto listo para desarrollo
-```
-
-### 📁 Archivos creados
-
-```
-vite.config.ts          ✅
-tsconfig.json           ✅
-tailwind.config.ts      ✅
-.env.local              ✅
-package.json            ✅
-src/main.tsx            ✅
-src/App.tsx             ✅
-src/index.css           ✅
-```
-
-### 🎯 Resultado
-
-Admin listo en `http://localhost:3000`
+✅ Alias paths configurados
+✅ .env.local con VITE_API_URL
 
 ---
 
-## 🔴 FASE 2: AUTENTICACIÓN - PRÓXIMO 🎯
+## 🟢 FASE 2: AUTENTICACIÓN - COMPLETADA ✅
 
-**Estado:** 🔴 PRÓXIMO (EMPIEZA HOY)  
-**Tiempo:** 1 semana  
-**Dependencias:** Fase 1  
-**Prioridad:** CRÍTICA  
+**Status:** ✅ COMPLETADA
+**Tiempo:** 1 semana
+**Fecha:** 2026-09-03
 
-### 🎯 Objetivos
-
-```
-[ ] Crear página Login
-[ ] Zustand auth store (token, user, isAuthenticated)
-[ ] Conectar a endpoint /auth/login del backend
-[ ] Guardar token en localStorage
-[ ] Crear ProtectedRoute component
-[ ] Logout functionality
-[ ] Error handling (email/password incorrectos)
-[ ] Redirect a dashboard después de login
-[ ] TypeScript interfaces para auth
-```
-
-### 📁 Archivos a crear
-
-```
-src/
-├── pages/
-│   └── Login.tsx
-├── components/
-│   └── auth/
-│       ├── LoginForm.tsx
-│       └── AuthLayout.tsx
-├── store/
-│   └── authStore.ts
-├── hooks/
-│   └── useAuth.ts
-├── lib/
-│   ├── api/
-│   │   ├── client.ts
-│   │   ├── endpoints.ts
-│   │   └── hooks.ts
-│   └── storage/
-│       └── auth.ts
-├── types/
-│   └── index.ts
-└── constants/
-    ├── routes.ts
-    └── api.ts
-```
-
-### 📚 Documentación
-
-```
-docs/api/AUTH.md            ← Endpoints exactos
-docs/guias/DESARROLLO.md    ← Cómo hacer auth
-docs/ARQUITECTURA.md        ← Flujo de autenticación
-```
-
-### 🔑 Endpoints consumidos
-
-```
-POST /api/v1/auth/login        ← Login
-POST /api/v1/auth/logout       ← Logout
-POST /api/v1/auth/refresh-token ← Refresh JWT
-GET  /api/v1/auth/me           ← Get user actual
-```
-
-### 🧪 Validaciones
-
-```
-✅ Email válido (formato)
-✅ Password no vacío
-✅ Error response handling
-❌ Email no registrado → error
-❌ Password incorrecto → error
-✅ Token storage
-✅ Redirect a login si no autenticado
-```
-
-### ⏱️ Desglose de tiempo
-
-```
-LoginForm component      : 1 hora
-Auth store (Zustand)     : 1 hora
-API client setup         : 30 min
-ProtectedRoute           : 30 min
-Error handling           : 1 hora
-Styling dark mode        : 1 hora
-─────────────────────────────
-Total estimado           : ~5.5 horas
-```
+✅ Login page (email + password)
+✅ Zustand auth store (token, user, isAuthenticated)
+✅ API client con axios + interceptors
+✅ Token storage (localStorage)
+✅ ProtectedRoute guard
+✅ Validación frontend
+✅ Conexión backend Railway
 
 ---
 
-## 🟡 FASE 3: LAYOUT - DESPUÉS
+## 🟢 FASE 3: LAYOUT - COMPLETADA ✅
 
-**Estado:** 🟡 NO EMPEZADO  
-**Tiempo:** 0.75 semanas  
-**Dependencias:** Fase 2 (Auth)  
-**Prioridad:** ALTA  
+**Status:** ✅ COMPLETADA
+**Tiempo:** 0.75 semanas
+**Fecha:** 2026-09-03
 
-### 🎯 Objetivos
-
-```
-[ ] Header component (logo, user menu, logout)
-[ ] Sidebar navigation (collapse/expand)
-[ ] MainLayout wrapper
-[ ] Responsive design (mobile, tablet, desktop)
-[ ] Dark mode toggle
-[ ] Active route highlight
-[ ] Breadcrumbs component
-[ ] Mobile hamburger menu
-[ ] Smooth transitions
-```
-
-### 📁 Archivos a crear
-
-```
-src/components/
-├── layout/
-│   ├── MainLayout.tsx
-│   ├── Header.tsx
-│   ├── Sidebar.tsx
-│   ├── Navigation.tsx
-│   ├── UserMenu.tsx
-│   └── Breadcrumbs.tsx
-└── common/
-    └── ThemeToggle.tsx
-```
-
-### ⏱️ Desglose de tiempo
-
-```
-Header component        : 1.5 horas
-Sidebar component       : 1.5 horas
-MainLayout wrapper      : 1 hora
-Responsive design       : 1 hora
-─────────────────────────────
-Total estimado          : ~5 horas
-```
+✅ Header (logo, user menu, logout, dark toggle)
+✅ Sidebar (6 nav items + collapse/expand)
+✅ MainLayout wrapper
+✅ Dark/light mode toggle
+✅ Responsive mobile (hamburger)
+✅ Breadcrumbs dinámicos
+✅ Active route highlighting
 
 ---
 
-## 🟡 FASE 4: DASHBOARD - DESPUÉS
+## 🟢 FASE 4: DASHBOARD - COMPLETADA ✅
 
-**Estado:** 🟡 NO EMPEZADO  
-**Tiempo:** 1 semana  
-**Dependencias:** Fases 2, 3  
-**Prioridad:** ALTA  
+**Status:** ✅ COMPLETADA
+**Tiempo:** 1 semana
+**Fecha:** 2026-09-03
 
-### 🎯 Objetivos
-
-```
-[ ] Stats grid (total users, coaches, premium, MRR)
-[ ] Revenue chart (Recharts - tiered breakdown)
-[ ] User activity chart (line chart)
-[ ] System health status (db, api, uptime)
-[ ] Top coaches leaderboard
-[ ] Recent activities feed
-[ ] Real-time data (refresh cada 30s)
-[ ] Error boundaries
-[ ] Loading skeletons
-```
-
-### 📁 Archivos a crear
-
-```
-src/
-├── pages/
-│   └── Dashboard.tsx
-├── components/
-│   └── dashboard/
-│       ├── StatsGrid.tsx
-│       ├── RevenueChart.tsx
-│       ├── ActivityChart.tsx
-│       ├── HealthStatus.tsx
-│       ├── TopCoaches.tsx
-│       └── RecentActivity.tsx
-└── hooks/
-    └── useDashboard.ts
-```
-
-### 📊 API Endpoints
-
-```
-GET /api/v1/stats                (dashboard stats)
-GET /api/v1/revenue              (revenue data)
-GET /api/v1/users/activity       (activity chart)
-GET /api/v1/health               (system health)
-GET /api/v1/coach/top            (top coaches)
-```
-
-### ⏱️ Desglose de tiempo
-
-```
-Stats grid              : 1 hora
-Revenue chart           : 1.5 horas
-Activity chart          : 1.5 horas
-Health status           : 1 hora
-Top coaches             : 1 hora
-Styling + responsive    : 1.5 horas
-─────────────────────────────
-Total estimado          : ~7.5 horas
-```
+✅ StatsGrid (4 KPI cards)
+✅ RevenueChart (Recharts stacked bar)
+✅ ActivityChart (Recharts line chart)
+✅ HealthStatus (DB + uptime)
+✅ TopCoaches (tabla ranking)
+✅ RecentActivity (feed actividades)
+✅ Loading skeletons
+✅ Auto-refresh datos
 
 ---
 
-## 🟡 FASE 5: USERS MANAGEMENT - DESPUÉS
+## 🟢 FASE 5: USERS MANAGEMENT - COMPLETADA ✅
 
-**Estado:** 🟡 NO EMPEZADO  
-**Tiempo:** 1 semana  
-**Dependencias:** Fases 2-4  
-**Prioridad:** ALTA  
+**Status:** ✅ COMPLETADA + AUDITADA
+**Tiempo:** 1 semana
+**Fecha:** 2026-09-03
+**Auditoría:** APROBADA ✅
 
-### 🎯 Objetivos
-
-```
-[ ] Users table con pagination
-[ ] Filters (tier: FREE/PREMIUM/PRO, status, search)
-[ ] Columnas: name, email, tier, status, created date
-[ ] User detail modal
-[ ] Edit user form
-[ ] Delete user (soft delete)
-[ ] Bulk actions (ban, promote tier, etc)
-[ ] User stats (activities, followers)
-[ ] Sorting por columnas
-```
-
-### 📁 Archivos a crear
-
-```
-src/
-├── pages/
-│   └── Users.tsx
-├── components/
-│   └── users/
-│       ├── UsersList.tsx
-│       ├── UserTable.tsx
-│       ├── UserFilters.tsx
-│       ├── UserDetail.tsx
-│       ├── UserForm.tsx
-│       └── BulkActions.tsx
-├── hooks/
-│   └── useUsers.ts
-└── store/
-    └── filtersStore.ts
-```
-
-### 📊 API Endpoints
-
-```
-GET  /api/v1/users                (list with filters)
-GET  /api/v1/users/:id            (user detail)
-PUT  /api/v1/users/:id            (update user)
-DELETE /api/v1/users/:id          (soft delete)
-GET  /api/v1/users/:id/activities (user activities)
-POST /api/v1/users/bulk-action    (bulk operations)
-```
-
-### ⏱️ Desglose de tiempo
-
-```
-Users table            : 2 horas
-Filters + search       : 1.5 horas
-User detail modal      : 1.5 horas
-Edit form              : 1 hora
-Bulk actions           : 1.5 horas
-Styling + responsive   : 1.5 horas
-─────────────────────────────
-Total estimado         : ~9 horas
-```
+✅ Tabla react-table v8 (sort, filter, paginate)
+✅ Filtros (search, tier, status)
+✅ Paginación (10 items/página)
+✅ Sorting columnas (click header)
+✅ UserDetail modal con 3 tabs
+✅ Create usuario (modal + form)
+✅ Edit usuario (PUT request)
+✅ Delete usuario (soft delete)
+✅ Bulk actions (suspend, promote, delete)
+✅ Validación frontend (email, required)
+✅ Dark mode Velora + responsive
 
 ---
 
-## 🟡 FASE 6: REVENUE TRACKING - DESPUÉS
+## 🟢 FASE 6: REVENUE TRACKING - COMPLETADA ✅
 
-**Estado:** 🟡 NO EMPEZADO  
-**Tiempo:** 0.75 semanas  
-**Dependencias:** Fases 2-4  
-**Prioridad:** MEDIA  
+**Status:** ✅ COMPLETADA
+**Tiempo:** 0.75 semanas
+**Fecha:** 2026-09-03
 
-### 🎯 Objetivos
-
-```
-[ ] Revenue overview (total MRR, growth %, growth $)
-[ ] Tiered breakdown (FREE: 0, PREMIUM: $9.99, PRO: $199)
-[ ] Revenue chart by tier (stacked bar)
-[ ] Top earning coaches leaderboard
-[ ] Churn rate calculator
-[ ] Lifetime value (LTV) estimate
-[ ] Projection model
-[ ] Export to CSV
-```
-
-### 📁 Archivos a crear
-
-```
-src/
-├── pages/
-│   └── Revenue.tsx
-├── components/
-│   └── revenue/
-│       ├── RevenueOverview.tsx
-│       ├── TieredChart.tsx
-│       ├── TierBreakdown.tsx
-│       ├── TopCoaches.tsx
-│       ├── MRRCalculator.tsx
-│       ├── ChurnAnalysis.tsx
-│       └── ExportButton.tsx
-└── hooks/
-    └── useRevenue.ts
-```
-
-### ⏱️ Desglose de tiempo
-
-```
-Revenue components     : 2 horas
-Charts (Recharts)      : 1.5 horas
-Calculations           : 1 hora
-Export CSV             : 1 hora
-Styling                : 1 hora
-─────────────────────────────
-Total estimado         : ~6.5 horas
-```
+✅ RevenueOverview (3 KPI: MRR, Growth %, Active Subs)
+✅ TieredChart (stacked bar chart 12 meses)
+✅ TierBreakdown (pie chart distribución tiers)
+✅ TopCoaches (tabla 10 coaches por MRR)
+✅ MRRCalculator (fórmula + desglose por tier)
+✅ ChurnAnalysis (line chart 30 días)
+✅ ExportButton (descarga CSV con datos)
+✅ PapaParse integrado para CSV
+✅ Dark mode + responsive
 
 ---
 
-## 🟡 FASE 7: CONTENT MODERATION - DESPUÉS
+## 🟢 FASE 7: CONTENT MODERATION - COMPLETADA ✅
 
-**Estado:** 🟡 NO EMPEZADO  
-**Tiempo:** 0.5 semanas  
-**Dependencias:** Fases 2-4  
-**Prioridad:** MEDIA  
+**Status:** ✅ COMPLETADA
+**Tiempo:** 0.5 semanas
+**Fecha:** 2026-09-03
 
-### 🎯 Objetivos
-
-```
-[ ] Flagged comments list
-[ ] User reports dashboard
-[ ] Review modal (comment + context)
-[ ] Approve/Reject/Delete actions
-[ ] Ban user from platform
-[ ] Moderation history
-[ ] Filters por severity
-[ ] Statistics (reported today, approved, rejected)
-```
-
-### 📁 Archivos a crear
-
-```
-src/
-├── pages/
-│   └── Moderation.tsx
-├── components/
-│   └── moderation/
-│       ├── FlaggedContent.tsx
-│       ├── CommentReview.tsx
-│       ├── UserReports.tsx
-│       ├── ModerationActions.tsx
-│       ├── History.tsx
-│       └── Stats.tsx
-└── hooks/
-    └── useModeration.ts
-```
-
-### ⏱️ Desglose de tiempo
-
-```
-Flagged content list   : 1.5 horas
-Review modal           : 1 hora
-Actions handling       : 1 hora
-Styling               : 1 hora
-─────────────────────────────
-Total estimado        : ~4.5 horas
-```
+✅ Stats (4 cards: Reportados, Aprobados, Rechazados, Baneados)
+✅ FlaggedContent (tabla 5 comentarios)
+✅ CommentReview (modal detail + acciones)
+✅ UserReports (tabla usuarios reportados)
+✅ ModerationActions (bulk approve/reject)
+✅ History (audit trail últimas 10 acciones)
+✅ Auto-refresh cada 2 minutos
+✅ ConfirmDialog antes danger actions
+✅ Dark mode + responsive
 
 ---
 
-## 🟡 FASE 8: SYSTEM HEALTH - DESPUÉS
+## 🟢 FASE 8: SYSTEM HEALTH - COMPLETADA ✅
 
-**Estado:** 🟡 NO EMPEZADO  
-**Tiempo:** 0.5 semanas  
-**Dependencias:** Fases 2-3  
-**Prioridad:** MEDIA  
+**Status:** ✅ COMPLETADA
+**Tiempo:** 0.5 semanas
+**Fecha:** 2026-09-03
 
-### 🎯 Objetivos
-
-```
-[ ] Database status (connected/down)
-[ ] API response time graph (real-time)
-[ ] Uptime percentage (last 7 days)
-[ ] Error rate chart
-[ ] Last health check timestamp
-[ ] Auto-refresh every 30s
-[ ] Alert notifications (red when down)
-[ ] Metrics: p50, p95, p99 response time
-```
-
-### 📁 Archivos a crear
-
-```
-src/
-├── pages/
-│   └── Health.tsx
-├── components/
-│   └── health/
-│       ├── DbStatus.tsx
-│       ├── ResponseTimeChart.tsx
-│       ├── UptimeWidget.tsx
-│       ├── ErrorRateChart.tsx
-│       └── Metrics.tsx
-└── hooks/
-    └── useHealth.ts
-```
-
-### ⏱️ Desglose de tiempo
-
-```
-Health components      : 1.5 horas
-Charts (Recharts)      : 1 hora
-Auto-refresh logic     : 1 hora
-Alerts                 : 1 hora
-─────────────────────────────
-Total estimado        : ~4.5 horas
-```
+✅ DbStatus (🟢 CONECTADA / 🔴 DOWN)
+✅ ResponseTimeChart (60 puntos últimas 1h)
+✅ UptimeWidget (24h, 7d, 30d uptime %)
+✅ ErrorRateChart (7 días de historial)
+✅ Metrics (P50, P95, P99 response time)
+✅ Auto-refresh cada 30 segundos
+✅ Simulación DB-down (localStorage flag)
+✅ Dark mode + responsive
 
 ---
 
-## 🟡 FASE 9: COMPONENTS LIBRARY - DESPUÉS
+## 🟢 FASE 9: COMPONENTS LIBRARY - COMPLETADA ✅
 
-**Estado:** 🟡 NO EMPEZADO  
-**Tiempo:** 0.75 semanas  
-**Dependencias:** Fases 1-3  
-**Prioridad:** MEDIA  
+**Status:** ✅ COMPLETADA
+**Tiempo:** 0.75 semanas
+**Fecha:** 2026-09-03
 
-### 🎯 Objetivos
+### Componentes creados (`src/components/common/`):
 
-```
-[ ] Button variants (primary, secondary, danger, ghost)
-[ ] Card component
-[ ] Modal dialog
-[ ] Data table (sortable, filterable)
-[ ] Form inputs (text, email, password, select)
-[ ] Badges/pills
-[ ] Loaders/skeletons
-[ ] Toast notifications
-[ ] Alerts
-[ ] Dropdowns
-```
+✅ Spinner.tsx (loader circular, hereda `currentColor`)
+✅ Button.tsx (variants: primary, secondary, danger, ghost, outline, success, warning · sizes sm/md/lg · loading + icons + fullWidth)
+✅ Input.tsx (label + error + hint · toggle ojo para password · `aria-invalid`/`aria-describedby`)
+✅ Select.tsx (label + error + options[] tipadas)
+✅ Alert.tsx (success/warning/error/info · title + onClose)
+✅ Dropdown.tsx (items[] · click-outside · teclado ↑/↓/Esc · separadores)
+✅ Pagination.tsx (prev/next + números con elipsis · colapsa a "X / Y" en mobile)
+✅ Toast.tsx (ToastProvider + useToast · portal top-right · auto-dismiss · slide-in)
+✅ Badge.tsx (Badge genérico variant/size + los específicos previos intactos)
 
-### 📁 Archivos a crear
+### Componentes mejorados:
 
-```
-src/components/common/
-├── Button.tsx
-├── Card.tsx
-├── Modal.tsx
-├── Table.tsx
-├── Input.tsx
-├── Select.tsx
-├── Badge.tsx
-├── Loader.tsx
-├── Skeleton.tsx
-├── Toast.tsx
-├── Alert.tsx
-├── Dropdown.tsx
-└── Pagination.tsx
-```
+✅ Card.tsx (title/actions/footer/noPadding opcionales, retrocompatible)
+✅ Modal.tsx (focus trap Tab/Shift+Tab · autofocus + restore · size sm/md/lg · closeOnBackdrop)
+✅ ConfirmDialog.tsx (usa Button internamente · Enter confirma · cancelLabel)
+✅ Skeleton.tsx (tipos compartidos)
 
-### ⏱️ Desglose de tiempo
+### Tipos y barrels:
 
-```
-Buttons                : 1 hora
-Cards, modals, inputs  : 2 horas
-Table component        : 1.5 horas
-Notifications          : 1 hora
-Styling + exports      : 1.5 horas
-─────────────────────────────
-Total estimado         : ~7 horas
-```
+✅ src/types/components.ts (contratos: Button/Card/Input/Select/Badge/Modal/ConfirmDialog/Dropdown/Toast/Alert/Pagination)
+✅ src/components/common/index.ts + src/components/index.ts
 
----
+### Refactorización de páginas:
 
-## 🟡 FASE 10: TESTING & DEPLOY - DESPUÉS
+✅ App.tsx → `<ToastProvider>` global
+✅ LoginForm → Input + Button + Alert
+✅ UserForm → Input + Select + Button (+ toast éxito)
+✅ UserFilters → Select + Button
+✅ UsersList / UserDetail / BulkActions → Button (+ toasts)
+✅ UserTable → Pagination
+✅ Moderation (CommentReview / ModerationActions / page) → Button + toasts
+✅ Revenue ExportButton → Button + toast
+✅ Health → Button + Alert (banner DB caída)
+✅ Header/UserMenu → Dropdown
 
-**Estado:** 🟡 NO EMPEZADO  
-**Tiempo:** 1 semana  
-**Dependencias:** Fases 2-9  
-**Prioridad:** ALTA  
+### Validaciones:
 
-### 🎯 Objetivos
+✅ `pnpm type-check` → 0 errores
+✅ `pnpm lint` (oxlint) → 0 warnings
+✅ `pnpm build` → dist/ OK (2609 módulos)
+_Logs en_ `%TEMP%\claude\D--proyecto-running-admin-velora\{type-check,lint,build}.log`
 
-```
-[ ] Unit tests (React Testing Library)
-[ ] E2E tests (Cypress)
-[ ] Coverage >80%
-[ ] Error boundaries
-[ ] Performance optimization
-[ ] Build optimization (tree-shaking, splitting)
-[ ] Production build
-[ ] Deploy a hosting
-[ ] Monitoring setup
-[ ] CI/CD pipeline
-```
-
-### ⏱️ Desglose de tiempo
-
-```
-Unit tests             : 2 horas
-E2E tests              : 2 horas
-Optimization           : 1.5 horas
-Build & deploy         : 1.5 horas
-Monitoring             : 1 hora
-─────────────────────────────
-Total estimado         : ~8 horas
-```
+**Próximo:** FASE 10
 
 ---
 
-## 📊 RESUMEN POR FASE
+## 🔴 FASE 10: TESTING - PRÓXIMO 🎯
 
-| Fase | Nombre | Tiempo | Estado | Horas |
-|------|--------|--------|--------|-------|
-| 1 | Setup | 0.5 sem | ✅ Hecho | - |
-| 2 | Auth | 1 sem | 🔴 HOY | 5.5h |
-| 3 | Layout | 0.75 sem | 🟡 Después | 5h |
-| 4 | Dashboard | 1 sem | 🟡 Después | 7.5h |
-| 5 | Users | 1 sem | 🟡 Después | 9h |
-| 6 | Revenue | 0.75 sem | 🟡 Después | 6.5h |
-| 7 | Moderation | 0.5 sem | 🟡 Después | 4.5h |
-| 8 | Health | 0.5 sem | 🟡 Después | 4.5h |
-| 9 | Components | 0.75 sem | 🟡 Después | 7h |
-| 10 | Testing | 1 sem | 🟡 Después | 8h |
+**Status:** 🔴 NO EMPEZADO
+**Tiempo Estimado:** 1 semana
 
-**TOTAL: ~7.5 semanas, 45-50 horas**
+### Tests a crear:
+
+Unit Tests (React Testing Library):
+- [ ] useAuth hook
+- [ ] useUsers hook
+- [ ] useRevenue hook
+- [ ] useModeration hook
+- [ ] useHealth hook
+- [ ] Components (Button, Card, Modal, etc)
+- [ ] Store actions (Zustand)
+
+E2E Tests (Cypress):
+- [ ] Login flow
+- [ ] Dashboard load
+- [ ] Users CRUD
+- [ ] Revenue export
+- [ ] Moderation approve/ban
+- [ ] Health auto-refresh
+
+Coverage:
+- Objetivo: >80%
+- Lines: >80%
+- Functions: >80%
+- Branches: >70%
+
+**Próximo:** DEPLOY A VERCEL
 
 ---
 
-## 📈 PROGRESO VISUAL
+## 📊 PROGRESO VISUAL
 
 ```
 FASE 1 (Setup)       ████████████████████ 100% ✅
-FASE 2 (Auth)        ░░░░░░░░░░░░░░░░░░░░   0% 🔴
-FASE 3 (Layout)      ░░░░░░░░░░░░░░░░░░░░   0% 🟡
-FASE 4 (Dashboard)   ░░░░░░░░░░░░░░░░░░░░   0% 🟡
-FASE 5 (Users)       ░░░░░░░░░░░░░░░░░░░░   0% 🟡
-FASE 6 (Revenue)     ░░░░░░░░░░░░░░░░░░░░   0% 🟡
-FASE 7 (Moderation)  ░░░░░░░░░░░░░░░░░░░░   0% 🟡
-FASE 8 (Health)      ░░░░░░░░░░░░░░░░░░░░   0% 🟡
-FASE 9 (Components)  ░░░░░░░░░░░░░░░░░░░░   0% 🟡
-FASE 10 (Testing)    ░░░░░░░░░░░░░░░░░░░░   0% 🟡
+FASE 2 (Auth)        ████████████████████ 100% ✅
+FASE 3 (Layout)      ████████████████████ 100% ✅
+FASE 4 (Dashboard)   ████████████████████ 100% ✅
+FASE 5 (Users)       ████████████████████ 100% ✅
+FASE 6 (Revenue)     ████████████████████ 100% ✅
+FASE 7 (Moderation)  ████████████████████ 100% ✅
+FASE 8 (Health)      ████████████████████ 100% ✅
+FASE 9 (Components)  ████████████████████ 100% ✅
+FASE 10 (Testing)    ░░░░░░░░░░░░░░░░░░░░   0% 🔴
 ─────────────────────────────────────────────────
-TOTAL PROYECTO       ██░░░░░░░░░░░░░░░░░░  10% 🚀
+TOTAL PROYECTO       ██████████████████░░  90% 🚀
 ```
 
 ---
 
-## 🎯 HITO IMPORTANTE
+## 📋 RESUMEN POR FASE
 
-```
-✅ FASE 1 (Hoy)     → Admin configurado
-🔴 FASE 2 (Esta semana) → Auth funcional
-🟡 FASE 3-4 (2 semanas) → Admin usable
-🟡 FASE 5-9 (3-4 semanas) → Todas features
-🟡 FASE 10 (Última semana) → Tests + Deploy
-```
+| Fase | Nombre | Tiempo | Estado |
+|------|--------|--------|--------|
+| 1 | Setup | 0.5 sem | ✅ Completada |
+| 2 | Auth | 1 sem | ✅ Completada |
+| 3 | Layout | 0.75 sem | ✅ Completada |
+| 4 | Dashboard | 1 sem | ✅ Completada |
+| 5 | Users | 1 sem | ✅ Completada + Auditada |
+| 6 | Revenue | 0.75 sem | ✅ Completada |
+| 7 | Moderation | 0.5 sem | ✅ Completada |
+| 8 | Health | 0.5 sem | ✅ Completada |
+| 9 | Components | 0.75 sem | ✅ Completada |
+| 10 | Testing | 1 sem | 🔴 Próximo |
 
----
-
-## 💡 NOTAS
-
-- Cada fase se construye sobre la anterior
-- Los tiempos son **estimaciones** (pueden variar)
-- Fase 2 (Auth) es **crítica** - no saltar
-- Puedes hacer múltiples fases en paralelo si tienes ayuda
-- Skills de Claude automatizan la mayoría del trabajo
+**Progreso: 9/10 fases completadas (90%)**
 
 ---
 
 ## 🎬 PRÓXIMO PASO
 
-**Empieza FASE 2:**
+**Empieza FASE 10: Testing**
 
 ```
-1. Lee docs/api/AUTH.md
-2. Lee docs/guias/DESARROLLO.md
-3. Di: "Crea el módulo auth"
-4. Yo genero estructura
-5. Tú completas la lógica
-6. Tests verdes ✅
-7. → FASE 3
+1. Setup Vitest + React Testing Library
+2. Unit tests hooks (useAuth, useUsers, useRevenue, useModeration, useHealth)
+3. Unit tests componentes base (Button, Input, Modal, Dropdown, Pagination, Toast)
+4. E2E con Cypress (login, users CRUD, revenue export, moderation, health)
+5. Coverage >80% → Deploy a Vercel
 ```
 
 ---

@@ -22,7 +22,14 @@ export const VELORA_COLORS = {
 export const TIER_COLORS = {
   FREE: '#9ca3af',
   PREMIUM: '#aa3bff',
-  PRO: '#22c55e',
+  PRO_COACHING: '#22c55e',
+} as const
+
+/** Colores semánticos para los charts del dashboard (Recharts). */
+export const CHART_COLORS = {
+  revenue: '#22c55e',
+  activity: '#38bdf8',
+  accent: '#aa3bff',
 } as const
 
 /** Secuencia para series de charts. */

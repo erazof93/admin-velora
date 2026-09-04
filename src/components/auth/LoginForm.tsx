@@ -1,14 +1,13 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Alert } from '@components/common/Alert'
+import { Button } from '@components/common/Button'
+import { Input } from '@components/common/Input'
 import { ROUTES } from '@constants/routes'
 import { VALIDATION_MESSAGES } from '@constants/messages'
 import { useAuth } from '@hooks/useAuth'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-const inputBase =
-  'w-full rounded-lg border bg-velora-bg px-4 py-2 text-velora-text transition-colors ' +
-  'placeholder:text-velora-muted focus:outline-none focus:ring-2 focus:ring-velora-primary'
 
 export const LoginForm = () => {
   const navigate = useNavigate()
@@ -43,68 +42,44 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      <div>
-        <label htmlFor="email" className="mb-2 block text-sm font-medium text-velora-text">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          autoComplete="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value)
-            if (fieldErrors.email) setFieldErrors((s) => ({ ...s, email: undefined }))
-            if (error) clearError()
-          }}
-          className={`${inputBase} ${fieldErrors.email ? 'border-velora-danger' : 'border-velora-border'}`}
-          placeholder="tu@email.com"
-          disabled={isLoading}
-        />
-        {fieldErrors.email && (
-          <p className="mt-1 text-sm text-velora-danger">{fieldErrors.email}</p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="password" className="mb-2 block text-sm font-medium text-velora-text">
-          Contraseña
-        </label>
-        <input
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value)
-            if (fieldErrors.password) setFieldErrors((s) => ({ ...s, password: undefined }))
-            if (error) clearError()
-          }}
-          className={`${inputBase} ${fieldErrors.password ? 'border-velora-danger' : 'border-velora-border'}`}
-          placeholder="••••••••"
-          disabled={isLoading}
-        />
-        {fieldErrors.password && (
-          <p className="mt-1 text-sm text-velora-danger">{fieldErrors.password}</p>
-        )}
-      </div>
-
-      {error && (
-        <div
-          role="alert"
-          className="rounded-lg border border-velora-danger/40 bg-velora-danger/10 p-3 text-sm text-velora-danger"
-        >
-          {error}
-        </div>
-      )}
-
-      <button
-        type="submit"
+      <Input
+        id="email"
+        type="email"
+        label="Email"
+        autoComplete="email"
+        placeholder="tu@email.com"
+        value={email}
         disabled={isLoading}
-        className="w-full rounded-lg bg-velora-primary py-2 font-medium text-white transition-colors hover:bg-velora-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
-      >
+        error={fieldErrors.email}
+        onChange={(e) => {
+          setEmail(e.target.value)
+          if (fieldErrors.email) setFieldErrors((s) => ({ ...s, email: undefined }))
+          if (error) clearError()
+        }}
+      />
+
+      <Input
+        id="password"
+        type="password"
+        label="Contraseña"
+        autoComplete="current-password"
+        placeholder="••••••••"
+        revealable
+        value={password}
+        disabled={isLoading}
+        error={fieldErrors.password}
+        onChange={(e) => {
+          setPassword(e.target.value)
+          if (fieldErrors.password) setFieldErrors((s) => ({ ...s, password: undefined }))
+          if (error) clearError()
+        }}
+      />
+
+      {error && <Alert type="error">{error}</Alert>}
+
+      <Button type="submit" fullWidth loading={isLoading}>
         {isLoading ? 'Iniciando sesión…' : 'Iniciar Sesión'}
-      </button>
+      </Button>
 
       <p className="text-center text-xs text-velora-muted">
         Usa las credenciales del backend de Velora.
