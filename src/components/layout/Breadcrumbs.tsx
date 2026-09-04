@@ -1,11 +1,11 @@
 import { ChevronRight } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { ROUTES } from '@constants/routes'
-import { NAV_ITEMS } from './Navigation'
+import { ALL_NAV_ITEMS } from './Navigation'
 
 export const Breadcrumbs = () => {
   const { pathname } = useLocation()
-  const current = NAV_ITEMS.find((item) => item.to === pathname)
+  const current = ALL_NAV_ITEMS.find((item) => item.to === pathname)
   const label = current?.label ?? (pathname.replace('/', '') || 'Inicio')
   const atDashboard = pathname === ROUTES.DASHBOARD
 

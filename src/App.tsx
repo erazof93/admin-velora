@@ -7,6 +7,7 @@ import { MainLayout } from '@components/layout'
 import { ROUTES } from '@constants/routes'
 import { useTheme } from '@hooks/useTheme'
 import { queryClient } from '@lib/queryClient'
+import AdminManagement from '@pages/AdminManagement'
 import Dashboard from '@pages/Dashboard'
 import Login from '@pages/Login'
 import Placeholder from '@pages/Placeholder'
@@ -41,6 +42,15 @@ function App() {
               <Route path={ROUTES.MODERATION} element={<Moderation />} />
               <Route path={ROUTES.HEALTH} element={<Health />} />
               <Route path={ROUTES.ANALYTICS} element={<Placeholder title="Analytics" />} />
+
+              <Route
+                path={ROUTES.ADMIN_CREATE}
+                element={
+                  <ProtectedRoute requiredRole="SUPERADMIN">
+                    <AdminManagement />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
 
             <Route path="/" element={<Navigate to={ROUTES.DASHBOARD} replace />} />

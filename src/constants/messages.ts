@@ -7,6 +7,7 @@ export const AUTH_MESSAGES = {
   SESSION_EXPIRED: 'Su sesión ha expirado',
   NETWORK_ERROR: 'Error de conexión. Intente nuevamente',
   LOGOUT_SUCCESS: 'Sesión cerrada',
+  NO_ADMIN_ACCESS: 'Esta cuenta no tiene acceso al panel de administración',
 } as const
 
 export const VALIDATION_MESSAGES = {

@@ -7,6 +7,7 @@ export const ROUTES = {
   MODERATION: '/moderation',
   HEALTH: '/health',
   ANALYTICS: '/analytics',
+  ADMIN_CREATE: '/admin/create-admin',
 } as const
 
 export type RouteKey = keyof typeof ROUTES

@@ -28,7 +28,7 @@ const user: User = {
   id: 'u1',
   email: 'admin@velora.com',
   name: 'Admin',
-  role: 'admin',
+  role: 'ADMIN',
   createdAt: '2026-01-01',
 }
 const authResponse: AuthResponse = {

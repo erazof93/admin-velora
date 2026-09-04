@@ -9,19 +9,33 @@ export type * from './revenue'
 export type * from './users'
 
 // ─── Auth ───────────────────────────────────────────────────────────────
+/** Roles del RBAC del backend (JWT + `/auth/*`). */
+export type AdminRole = 'SUPERADMIN' | 'ADMIN' | 'CLIENTE' | 'COACH'
+
 export interface User {
   id: string
   email: string
   name: string
-  role: 'admin' | 'coach' | 'athlete'
+  role: AdminRole
   tier?: 'FREE' | 'PREMIUM' | 'PRO_COACHING'
-  createdAt: string
+  /** El backend de auth ya no lo devuelve; queda opcional para datos legacy. */
+  createdAt?: string
 }
 
 export interface LoginRequest {
   email: string
   password: string
 }
+
+/** Payload de `POST /admin/create-admin` (SUPERADMIN). */
+export interface CreateAdminRequest {
+  email: string
+  name: string
+  password: string
+}
+
+/** Cuenta devuelta al crear/gestionar un admin. */
+export type AdminAccount = Pick<User, 'id' | 'email' | 'name' | 'role'>
 
 export interface AuthResponse {
   token: string

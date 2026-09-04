@@ -4,18 +4,21 @@ import { Alert } from '@components/common/Alert'
 import { Button } from '@components/common/Button'
 import { Input } from '@components/common/Input'
 import { ROUTES } from '@constants/routes'
-import { VALIDATION_MESSAGES } from '@constants/messages'
+import { isAdminRole } from '@constants/roles'
+import { AUTH_MESSAGES, VALIDATION_MESSAGES } from '@constants/messages'
 import { useAuth } from '@hooks/useAuth'
+import { useAuthStore } from '@store/authStore'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export const LoginForm = () => {
   const navigate = useNavigate()
-  const { login, isLoading, error, clearError } = useAuth()
+  const { login, logout, isLoading, error, clearError } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({})
+  const [accessError, setAccessError] = useState('')
 
   const validate = () => {
     const next: { email?: string; password?: string } = {}
@@ -34,10 +37,23 @@ export const LoginForm = () => {
     if (isLoading || !validate()) return
     try {
       await login(email, password)
-      navigate(ROUTES.DASHBOARD, { replace: true })
+      // El store ya tiene el `user` con su `role` tras el login.
+      const role = useAuthStore.getState().user?.role
+      if (isAdminRole(role)) {
+        navigate(ROUTES.DASHBOARD, { replace: true })
+      } else {
+        // CLIENTE / COACH no tienen sitio en el panel: se cierra la sesión.
+        logout()
+        setAccessError(AUTH_MESSAGES.NO_ADMIN_ACCESS)
+      }
     } catch {
       // El mensaje de error ya quedó en el store (useAuth().error).
     }
+  }
+
+  const resetErrors = () => {
+    if (accessError) setAccessError('')
+    if (error) clearError()
   }
 
   return (
@@ -54,7 +70,7 @@ export const LoginForm = () => {
         onChange={(e) => {
           setEmail(e.target.value)
           if (fieldErrors.email) setFieldErrors((s) => ({ ...s, email: undefined }))
-          if (error) clearError()
+          resetErrors()
         }}
       />
 
@@ -71,11 +87,11 @@ export const LoginForm = () => {
         onChange={(e) => {
           setPassword(e.target.value)
           if (fieldErrors.password) setFieldErrors((s) => ({ ...s, password: undefined }))
-          if (error) clearError()
+          resetErrors()
         }}
       />
 
-      {error && <Alert type="error">{error}</Alert>}
+      {(error || accessError) && <Alert type="error">{accessError || error}</Alert>}
 
       <Button type="submit" fullWidth loading={isLoading}>
         {isLoading ? 'Iniciando sesión…' : 'Iniciar Sesión'}

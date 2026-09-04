@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { ChevronLeft, X } from 'lucide-react'
+import { isSuperAdmin } from '@constants/roles'
+import { useAuth } from '@hooks/useAuth'
 import { useUIStore } from '@store/uiStore'
 import { cn } from '@lib/utils/helpers'
-import { NAV_ITEMS } from './Navigation'
+import { NAV_ITEMS, SUPERADMIN_NAV_ITEMS, type NavItem } from './Navigation'
 
 interface SidebarProps {
   mobileOpen: boolean
@@ -12,6 +14,28 @@ interface SidebarProps {
 export const Sidebar = ({ mobileOpen, onMobileClose }: SidebarProps) => {
   const expanded = useUIStore((s) => s.sidebarOpen)
   const toggleSidebar = useUIStore((s) => s.toggleSidebar)
+  const { user } = useAuth()
+
+  const renderLink = ({ label, to, icon: Icon }: NavItem) => (
+    <NavLink
+      key={to}
+      to={to}
+      onClick={onMobileClose}
+      title={label}
+      className={({ isActive }) =>
+        cn(
+          'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
+          !expanded && 'md:justify-center md:px-0',
+          isActive
+            ? 'bg-velora-primary/15 text-velora-primary'
+            : 'text-velora-muted hover:bg-velora-surface-2 hover:text-velora-text',
+        )
+      }
+    >
+      <Icon className="size-5 shrink-0" />
+      <span className={cn(!expanded && 'md:hidden')}>{label}</span>
+    </NavLink>
+  )
 
   return (
     <>
@@ -53,26 +77,22 @@ export const Sidebar = ({ mobileOpen, onMobileClose }: SidebarProps) => {
         </div>
 
         <nav className="flex-1 space-y-1 overflow-y-auto px-2 py-2">
-          {NAV_ITEMS.map(({ label, to, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              onClick={onMobileClose}
-              title={label}
-              className={({ isActive }) =>
-                cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
-                  !expanded && 'md:justify-center md:px-0',
-                  isActive
-                    ? 'bg-velora-primary/15 text-velora-primary'
-                    : 'text-velora-muted hover:bg-velora-surface-2 hover:text-velora-text',
-                )
-              }
-            >
-              <Icon className="size-5 shrink-0" />
-              <span className={cn(!expanded && 'md:hidden')}>{label}</span>
-            </NavLink>
-          ))}
+          {NAV_ITEMS.map(renderLink)}
+
+          {isSuperAdmin(user?.role) && (
+            <>
+              <hr className="my-3 border-velora-border" />
+              <p
+                className={cn(
+                  'px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-velora-muted',
+                  !expanded && 'md:hidden',
+                )}
+              >
+                Superadmin
+              </p>
+              {SUPERADMIN_NAV_ITEMS.map(renderLink)}
+            </>
+          )}
         </nav>
       </aside>
     </>

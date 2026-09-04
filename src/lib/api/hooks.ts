@@ -1,7 +1,7 @@
 import { useMutation, useQuery, type UseQueryOptions } from '@tanstack/react-query'
-import type { LoginRequest } from '@/types'
+import type { CreateAdminRequest, LoginRequest } from '@/types'
 import { apiClient } from './client'
-import { authAPI } from './endpoints'
+import { adminAPI, authAPI } from './endpoints'
 
 /** Helper genérico para GETs con React Query (base para hooks de dominio de fases siguientes). */
 export function useApiQuery<T>(
@@ -31,4 +31,10 @@ export const useGetMeQuery = (enabled = true) =>
     queryFn: () => authAPI.getMe(),
     enabled,
     staleTime: 1000 * 60 * 5,
+  })
+
+export const useCreateAdminMutation = () =>
+  useMutation({
+    mutationFn: (payload: CreateAdminRequest) => adminAPI.createAdmin(payload),
+    retry: 0,
   })

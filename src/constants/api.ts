@@ -46,4 +46,8 @@ export const API_ENDPOINTS = {
     STATS: '/moderation/stats',
     ACTION: '/moderation/action',
   },
+  ADMIN: {
+    CREATE_ADMIN: '/admin/create-admin',
+    REVOKE_ADMIN: '/admin/revoke-admin',
+  },
 } as const

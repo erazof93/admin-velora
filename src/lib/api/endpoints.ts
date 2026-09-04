@@ -1,4 +1,10 @@
-import type { AuthResponse, LoginRequest, User } from '@/types'
+import type {
+  AdminAccount,
+  AuthResponse,
+  CreateAdminRequest,
+  LoginRequest,
+  User,
+} from '@/types'
 import { API_ENDPOINTS } from '@constants/api'
 import { authStorage } from '@lib/storage/auth'
 import apiClient from './client'
@@ -24,5 +30,20 @@ export const authAPI = {
       refreshToken,
     })
     return data
+  },
+}
+
+/** Gestión de administradores. Requiere SUPERADMIN (guard en el backend). */
+export const adminAPI = {
+  createAdmin: async (payload: CreateAdminRequest): Promise<AdminAccount> => {
+    const { data } = await apiClient.post<AdminAccount>(
+      API_ENDPOINTS.ADMIN.CREATE_ADMIN,
+      payload,
+    )
+    return data
+  },
+
+  revokeAdmin: async (userId: string): Promise<void> => {
+    await apiClient.post(API_ENDPOINTS.ADMIN.REVOKE_ADMIN, { userId })
   },
 }
