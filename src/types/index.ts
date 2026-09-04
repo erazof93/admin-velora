@@ -37,10 +37,14 @@ export interface CreateAdminRequest {
 /** Cuenta devuelta al crear/gestionar un admin. */
 export type AdminAccount = Pick<User, 'id' | 'email' | 'name' | 'role'>
 
+/** Shape real de `/auth/login|register|refresh-token` (backend: `AuthEntity`, plano). */
 export interface AuthResponse {
-  token: string
+  id: string
+  email: string
+  name: string
+  role: AdminRole
+  accessToken: string
   refreshToken: string
-  user: User
 }
 
 export interface AuthState {

@@ -29,12 +29,14 @@ const user: User = {
   email: 'admin@velora.com',
   name: 'Admin',
   role: 'ADMIN',
-  createdAt: '2026-01-01',
 }
 const authResponse: AuthResponse = {
-  token: 'tok',
+  id: user.id,
+  email: user.email,
+  name: user.name,
+  role: user.role,
+  accessToken: 'tok',
   refreshToken: 'refresh',
-  user,
 }
 
 describe('authStore', () => {

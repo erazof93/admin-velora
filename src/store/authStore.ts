@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import axios from 'axios'
-import type { AuthState } from '@/types'
+import type { AuthState, User } from '@/types'
 import { AUTH_MESSAGES } from '@constants/messages'
 import { authAPI } from '@lib/api/endpoints'
 import { authStorage } from '@lib/storage/auth'
@@ -26,13 +26,21 @@ export const useAuthStore = create<AuthState>()((set) => ({
     try {
       const response = await authAPI.login({ email, password })
 
-      authStorage.setToken(response.token)
+      // El backend responde plano (id/email/name/role + tokens), no anidado en `user`.
+      const user: User = {
+        id: response.id,
+        email: response.email,
+        name: response.name,
+        role: response.role,
+      }
+
+      authStorage.setToken(response.accessToken)
       authStorage.setRefreshToken(response.refreshToken)
-      authStorage.setUser(response.user)
+      authStorage.setUser(user)
 
       set({
-        token: response.token,
-        user: response.user,
+        token: response.accessToken,
+        user,
         isAuthenticated: true,
         isLoading: false,
       })
