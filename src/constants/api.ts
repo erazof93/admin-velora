@@ -50,4 +50,9 @@ export const API_ENDPOINTS = {
     CREATE_ADMIN: '/admin/create-admin',
     REVOKE_ADMIN: '/admin/revoke-admin',
   },
+  COACHES: {
+    APPLICATIONS: '/coach/applications',
+    APPROVE: (id: string) => `/coach/applications/${id}/approve`,
+    REJECT: (id: string) => `/coach/applications/${id}/reject`,
+  },
 } as const

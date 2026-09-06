@@ -16,6 +16,7 @@ import Users from '@pages/Users'
 // Páginas pesadas → chunk propio (Recharts / tablas fuera del bundle inicial).
 const Revenue = lazy(() => import('@pages/Revenue'))
 const Moderation = lazy(() => import('@pages/Moderation'))
+const Coaches = lazy(() => import('@pages/Coaches'))
 const Health = lazy(() => import('@pages/Health'))
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
               <Route path={ROUTES.USERS} element={<Users />} />
               <Route path={ROUTES.REVENUE} element={<Revenue />} />
               <Route path={ROUTES.MODERATION} element={<Moderation />} />
+              <Route path={ROUTES.COACHES} element={<Coaches />} />
               <Route path={ROUTES.HEALTH} element={<Health />} />
               <Route path={ROUTES.ANALYTICS} element={<Placeholder title="Analytics" />} />
 

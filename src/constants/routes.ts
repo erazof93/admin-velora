@@ -5,6 +5,7 @@ export const ROUTES = {
   USERS: '/users',
   REVENUE: '/revenue',
   MODERATION: '/moderation',
+  COACHES: '/coaches',
   HEALTH: '/health',
   ANALYTICS: '/analytics',
   ADMIN_CREATE: '/admin/create-admin',

@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react'
 import {
   BarChart3,
+  Dumbbell,
   HeartPulse,
   LayoutDashboard,
   ShieldAlert,
@@ -22,6 +23,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Usuarios', to: ROUTES.USERS, icon: Users },
   { label: 'Revenue', to: ROUTES.REVENUE, icon: TrendingUp },
   { label: 'Moderación', to: ROUTES.MODERATION, icon: ShieldAlert },
+  { label: 'Coaches', to: ROUTES.COACHES, icon: Dumbbell },
   { label: 'Health', to: ROUTES.HEALTH, icon: HeartPulse },
   { label: 'Analytics', to: ROUTES.ANALYTICS, icon: BarChart3 },
 ]
